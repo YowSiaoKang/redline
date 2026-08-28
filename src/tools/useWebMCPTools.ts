@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { useSession } from "../state/session";
-import { getDocumentStateTool } from "./analysis";
+import {
+  assessClauseTool,
+  extractClausesTool,
+  getClauseTextTool,
+  getDocumentStateTool,
+  getEnforceabilityContextTool,
+} from "./analysis";
 import { getSampleContractTool } from "./base";
 import { ToolPhase } from "./register";
 
@@ -21,7 +27,13 @@ export function useWebMCPTools(): void {
     if (!modelContext) return undefined;
     const analysisPhase = new ToolPhase(modelContext);
     if (hasDocument) {
-      analysisPhase.activate([getDocumentStateTool({ sessionRef, dispatch })]);
+      analysisPhase.activate([
+        getDocumentStateTool({ sessionRef, dispatch }),
+        extractClausesTool({ sessionRef, dispatch }),
+        getClauseTextTool({ sessionRef, dispatch }),
+        assessClauseTool({ sessionRef, dispatch }),
+        getEnforceabilityContextTool(),
+      ]);
     }
     return () => analysisPhase.deactivate();
   }, [hasDocument, sessionRef, dispatch]);
