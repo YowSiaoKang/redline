@@ -1,0 +1,53 @@
+:root {
+  color-scheme: light;
+
+  --paper: #faf7f2;
+  --paper-deep: #f4eee3;
+  --paper-edge: #e6ddcd;
+  --paper-translucent: rgba(250, 247, 242, 0.92);
+
+  --ink: #221d18;
+  --ink-soft: #5b534a;
+  --ink-faint: #96897b;
+
+  --red-ink: #c1121f;
+  --red-ink-deep: #8c0d16;
+  --red-wash: #f9e7e5;
+
+  --font-document: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+
+  --text-display: 4.75rem;
+  --text-h1: 3rem;
+  --text-h2: 2.125rem;
+  --text-h3: 1.375rem;
+  --text-doc: 1.1875rem;
+  --text-ui: 0.9375rem;
+  --text-ui-small: 0.8125rem;
+
+  --leading-display: 1;
+  --leading-doc: 1.65;
+
+  --tracking-ui: 0.01em;
+  --tracking-caps: 0.14em;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --frame-max: 72rem;
+  --measure-doc: 42rem;
+
+  --blur-document: 4px;
+
+  --rule-hair: 1px;
+  --rule-heavy: 3px;
+
+  --shadow-lift: 0 1px 2px rgba(34, 29, 24, 0.06), 0 8px 24px rgba(34, 29, 24, 0.05);
+}
