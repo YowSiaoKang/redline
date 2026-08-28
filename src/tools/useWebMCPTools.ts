@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSession } from "../state/session";
 import {
   assessClauseTool,
+  exportNegotiationEmailTool,
   extractClausesTool,
   getClauseTextTool,
   getDocumentStateTool,
@@ -33,6 +34,7 @@ export function useWebMCPTools(): void {
         getClauseTextTool({ sessionRef, dispatch }),
         assessClauseTool({ sessionRef, dispatch }),
         getEnforceabilityContextTool(),
+        exportNegotiationEmailTool({ sessionRef, dispatch }),
       ]);
     }
     return () => analysisPhase.deactivate();

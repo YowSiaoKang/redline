@@ -120,6 +120,25 @@ export const assessClauseInput: JsonObjectSchema = {
   additionalProperties: false,
 };
 
+export const exportNegotiationEmailInput: JsonObjectSchema = {
+  type: "object",
+  properties: {
+    yourName: {
+      type: "string",
+      description: "The user's real name for the signature, e.g. 'Sam Rivera'. Omit to keep the [Your Name] placeholder exactly as the page shows.",
+    },
+    company: {
+      type: "string",
+      description: "The employer's name, e.g. 'Acme Robotics'. Omit to keep the [Company] placeholder exactly as the page shows.",
+    },
+    hiringManagerName: {
+      type: "string",
+      description: "The hiring manager's name for the salutation, e.g. 'Jordan'. Omit to keep the [Hiring Manager Name] placeholder exactly as the page shows.",
+    },
+  },
+  additionalProperties: false,
+};
+
 export const getEnforceabilityContextInput: JsonObjectSchema = {
   type: "object",
   properties: {
