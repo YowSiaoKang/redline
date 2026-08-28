@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { sampleContracts, type SampleContract } from "../data/samples/stub";
+import { sampleContracts, type SampleContract } from "../data/samples";
 import { splitClauses } from "../lib/clause-splitter";
 import { looksLikeContract, titleFromText } from "../lib/contract-check";
 import { useSession } from "../state/session";
@@ -84,7 +84,7 @@ export function Landing({ webMcpAvailable }: { webMcpAvailable: boolean }) {
             className="card"
             onClick={() => loadSample(sample)}
           >
-            <span className="card__title">{sample.title}</span>
+            <span className="card__title">{sample.cardTitle}</span>
             <span className="card__blurb">{sample.blurb}</span>
             <span className="card__open">Open it</span>
           </button>
