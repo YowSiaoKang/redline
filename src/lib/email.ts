@@ -11,20 +11,34 @@ function ensurePeriod(text: string): string {
   return /[.!?]$/.test(text) ? text : `${text}.`;
 }
 
-function askSentence(redline: Redline, first: boolean): string {
-  const lead = first ? "I'd" : "Also, I'd";
-  if (redline.type === "remove") {
-    return `${lead} like to remove "${redline.originalSpan}".`;
-  }
-  return `${lead} like to replace "${redline.originalSpan}" with "${redline.proposedText}".`;
+function shortenSummary(summary: string): string {
+  const trimmed = summary.trim();
+  const sentenceEnd = trimmed.search(/[.!?](\s|$)/);
+  const firstSentence = sentenceEnd === -1 ? trimmed : trimmed.slice(0, sentenceEnd + 1);
+  if (firstSentence.length <= 80) return firstSentence;
+  const cut = firstSentence.slice(0, 80);
+  const breakAt = cut.lastIndexOf(" ");
+  return `${(breakAt > 0 ? cut.slice(0, breakAt) : cut).trimEnd()}…`;
 }
 
-function clauseParagraph(clause: Clause, adopted: Redline[]): string {
-  const asks = adopted.map((redline, index) => askSentence(redline, index === 0)).join(" ");
-  if (clause.summary) {
-    return `${ensurePeriod(clause.summary.trim())} ${asks}`;
+function proposedLabel(redline: Redline): string {
+  if (redline.type === "remove" && redline.proposedText.trim() === "") {
+    return "Remove this language entirely.";
   }
-  return `About Section ${clause.order + 1}: ${asks}`;
+  return redline.proposedText;
+}
+
+function clauseBlock(clause: Clause, adopted: Redline[], position: number): string {
+  const name = clause.summary ? shortenSummary(clause.summary) : `Section ${clause.order + 1}`;
+  const lines: string[] = [`${position}. ${name}`];
+  for (const redline of adopted) {
+    lines.push(
+      `   Current:  "${redline.originalSpan}"`,
+      `   Proposed: "${proposedLabel(redline)}"`,
+      `   Reason:   ${ensurePeriod(redline.reason.trim())}`,
+    );
+  }
+  return lines.join("\n");
 }
 
 export function composeEmail(doc: ContractDoc, opts: EmailOptions = {}): string {
@@ -70,9 +84,9 @@ export function composeEmail(doc: ContractDoc, opts: EmailOptions = {}): string 
       : `Thank you again for the offer — I'm excited about the role and about joining ${company}. Before I sign, I'd like to align on a few terms — I'll list them here as the review wraps up.`,
   );
 
-  for (const { clause, adopted } of adoptedByClause) {
-    body.push(clauseParagraph(clause, adopted));
-  }
+  adoptedByClause.forEach((entry, index) => {
+    body.push(clauseBlock(entry.clause, entry.adopted, index + 1));
+  });
 
   body.push(
     adoptedCount > 0

@@ -5,6 +5,7 @@ import type {
   ContractDoc,
   Flag,
   Message,
+  ProposedRedline,
   Redline,
   ReviewSession,
 } from "./types";
@@ -63,14 +64,9 @@ function applyAssessment(session: ReviewSession, action: ClauseAssessedAction): 
   const clause = doc?.clauses.find((candidate) => candidate.id === action.clauseId);
   if (!doc || !clause) return session;
 
-  const additions = (action.redlines ?? []).map((proposed, index) => ({
-    ...proposed,
-    id: `${clause.id}-r${clause.redlines.length + index + 1}`,
-    verdict: "undecided" as const,
-  }));
+  const { redlines } = planRedlines(clause.id, clause.redlines, action.redlines ?? []);
 
   const flags: Flag[] = action.flags ? [...action.flags] : clause.flags;
-  const redlines = [...clause.redlines, ...additions];
   const chat: Message[] = action.note
     ? [...clause.chat, { role: "agent" as const, text: action.note }]
     : clause.chat;
@@ -124,4 +120,42 @@ function applyVerdict(session: ReviewSession, action: VerdictSetAction): ReviewS
 
 function withDerivedPhase(session: ReviewSession): ReviewSession {
   return { ...session, phase: phaseFor(session) };
+}
+
+function normalizeText(text: string): string {
+  return text.trim().replace(/\s+/g, " ");
+}
+
+function isDuplicateRedline(redline: Redline, proposal: ProposedRedline): boolean {
+  return (
+    redline.type === proposal.type &&
+    normalizeText(redline.originalSpan) === normalizeText(proposal.originalSpan) &&
+    normalizeText(redline.proposedText) === normalizeText(proposal.proposedText)
+  );
+}
+
+export function planRedlines(
+  clauseId: string,
+  existing: Redline[],
+  proposals: ProposedRedline[],
+): { redlines: Redline[]; added: Redline[] } {
+  const redlines = [...existing];
+  const added: Redline[] = [];
+  for (const proposal of proposals) {
+    const duplicate = redlines.find((candidate) => isDuplicateRedline(candidate, proposal));
+    if (duplicate) {
+      if (duplicate.verdict === "undecided") {
+        redlines[redlines.indexOf(duplicate)] = { ...duplicate, reason: proposal.reason };
+      }
+      continue;
+    }
+    const redline: Redline = {
+      ...proposal,
+      id: `${clauseId}-r${redlines.length + 1}`,
+      verdict: "undecided",
+    };
+    redlines.push(redline);
+    added.push(redline);
+  }
+  return { redlines, added };
 }

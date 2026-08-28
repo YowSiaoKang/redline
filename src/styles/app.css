@@ -772,6 +772,7 @@ body {
   color: var(--ink);
   background: var(--paper-deep);
   border: var(--rule-hair) solid var(--paper-edge);
+  border-left: var(--rule-heavy) solid var(--red-ink);
   box-shadow: var(--shadow-lift);
   white-space: pre-wrap;
   overflow-wrap: anywhere;

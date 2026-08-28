@@ -7,8 +7,16 @@ export function ClauseChat({ clause }: { clause: Clause }) {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const timer = useRef<number | undefined>(undefined);
+  const lastSeenCount = useRef(clause.chat.length);
 
   useEffect(() => () => window.clearTimeout(timer.current), []);
+
+  useEffect(() => {
+    if (clause.chat.length > lastSeenCount.current) {
+      setOpen(true);
+    }
+    lastSeenCount.current = clause.chat.length;
+  }, [clause.chat.length]);
 
   const ask = async () => {
     const done = await copyToClipboard(buildAskPrompt(clause));

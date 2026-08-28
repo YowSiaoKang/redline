@@ -4,6 +4,7 @@ import { DATA_NOTE as TRAP_DATA_NOTE, defaultTrapNote, trapProfiles } from "../d
 import type { StateProfile, TrapProfile } from "../data/enforceability/types";
 import { composeEmail, type EmailOptions } from "../lib/email";
 import { documentReviewComplete } from "../state/select";
+import { planRedlines } from "../state/actions";
 import type { Clause, ContractDoc, Flag, ProposedRedline } from "../state/types";
 import { errorMessage, errorResult, textResult, type ToolDeps } from "./register";
 import {
@@ -185,7 +186,7 @@ export function assessClauseTool(deps: ToolDeps): WebMCP.ModelContextTool {
     name: "assess_clause",
     title: "Record a clause assessment",
     description:
-      "Record your assessment of one clause: a plain-English one-line summary, flags for issues, proposed redlines, and an optional note to the human. This MUTATES the review — the human sees the results immediately. Output contract: flags[] need {issue, severity, reason} where severity is exactly 'high' (likely unenforceable or significant harm), 'medium' (questionable, worth negotiating), or 'low' (worth noting); reason must be ONE line grounded in get_enforceability_context data ('Texas courts won't enforce a 5-year, nationwide ban'), never vibes ('this seems long'). redlines[] need {type: 'replace'|'remove', originalSpan, proposedText, reason}: originalSpan copied verbatim from get_clause_text; for 'replace', proposedText must be ACTUAL contract language a lawyer could paste in ('for a period of six months and within a 25-mile radius of the Employee's primary work location') — never an instruction like 'shorten this'; the store assigns redline ids, never invent them. Re-invoke assess_clause on a clause you already assessed to change your mind under questioning — new flags replace old ones and new redlines append immediately.",
+      "Record your assessment of one clause: a plain-English one-line summary, flags for issues, proposed redlines, and an optional note to the human. This MUTATES the review — the human sees the results immediately. Output contract: flags[] need {issue, severity, reason} where severity is exactly 'high' (likely unenforceable or significant harm), 'medium' (questionable, worth negotiating), or 'low' (worth noting); reason must be ONE line grounded in get_enforceability_context data ('Texas courts won't enforce a 5-year, nationwide ban'), never vibes ('this seems long'). redlines[] need {type: 'replace'|'remove', originalSpan, proposedText, reason}: originalSpan copied verbatim from get_clause_text; for 'replace', proposedText must be ACTUAL contract language a lawyer could paste in ('for a period of six months and within a 25-mile radius of the Employee's primary work location') — never an instruction like 'shorten this'; the store assigns redline ids, never invent them. Re-invoke assess_clause on a clause you already assessed to change your mind under questioning — new flags replace old ones and identical redlines are deduplicated instead of doubling up. When the human asks you a question about a clause (why did you flag this? what does this mean? is this normal?), ALWAYS call assess_clause on that clause with your answer as the `note` — even if flags and redlines are unchanged — so your answer appears in the page's clause thread. Your chat text is invisible to the page; the note is how you talk to the human.",
     inputSchema: assessClauseInput,
     annotations: { untrustedContentHint: true },
     execute: (input) => {
@@ -216,17 +217,15 @@ export function assessClauseTool(deps: ToolDeps): WebMCP.ModelContextTool {
           redlines,
           note,
         });
+        const planned = planRedlines(clause.id, clause.redlines, redlines ?? []);
         const effectiveFlags = flags ?? clause.flags;
-        const freshIds = (redlines ?? []).map(
-          (_, index) => `${clause.id}-r${clause.redlines.length + index + 1}`,
-        );
         return textResult({
           assessed: clause.id,
-          status: effectiveFlags.length > 0 || clause.redlines.length > 0 || freshIds.length > 0 ? "flagged" : "cleared",
+          status: effectiveFlags.length > 0 || planned.redlines.length > 0 ? "flagged" : "cleared",
           summary,
           flagsRecorded: effectiveFlags.length,
-          redlinesAppended: freshIds,
-          totalRedlines: clause.redlines.length + freshIds.length,
+          redlinesAppended: planned.added.map((redline) => redline.id),
+          totalRedlines: planned.redlines.length,
           dataNote: DATA_NOTE,
         });
       } catch (error) {

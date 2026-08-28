@@ -1,7 +1,10 @@
 import type { Clause, ContractDoc, Phase, ReviewSession } from "./types";
 
 export function clauseIsClear(clause: Clause): boolean {
-  return clause.status === "cleared" || clause.redlines.every((redline) => redline.verdict !== "undecided");
+  return (
+    clause.assessed &&
+    (clause.status === "cleared" || clause.redlines.every((redline) => redline.verdict !== "undecided"))
+  );
 }
 
 export function documentReviewComplete(doc: ContractDoc | null): boolean {
