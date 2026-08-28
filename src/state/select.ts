@@ -1,16 +1,20 @@
-import type { Clause, Phase, ReviewSession } from "./types";
+import type { Clause, ContractDoc, Phase, ReviewSession } from "./types";
 
 export function clauseIsClear(clause: Clause): boolean {
   return clause.status === "cleared" || clause.redlines.every((redline) => redline.verdict !== "undecided");
 }
 
-export function reviewComplete(session: ReviewSession): boolean {
-  const clauses = session.document?.clauses ?? [];
+export function documentReviewComplete(doc: ContractDoc | null): boolean {
+  const clauses = doc?.clauses ?? [];
   return (
     clauses.length > 0 &&
     clauses.every((clause) => clause.assessed) &&
     clauses.every((clause) => clause.redlines.every((redline) => redline.verdict !== "undecided"))
   );
+}
+
+export function reviewComplete(session: ReviewSession): boolean {
+  return documentReviewComplete(session.document);
 }
 
 export function phaseFor(session: ReviewSession): Phase {

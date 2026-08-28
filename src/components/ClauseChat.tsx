@@ -1,24 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { buildAskPrompt } from "../lib/ask";
+import { copyToClipboard } from "../lib/clipboard";
 import type { Clause } from "../state/types";
-
-async function copyToClipboard(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text);
-    return true;
-  } catch {
-    const area = document.createElement("textarea");
-    area.value = text;
-    area.setAttribute("readonly", "");
-    area.style.position = "fixed";
-    area.style.opacity = "0";
-    document.body.appendChild(area);
-    area.select();
-    const copied = document.execCommand("copy");
-    document.body.removeChild(area);
-    return copied;
-  }
-}
 
 export function ClauseChat({ clause }: { clause: Clause }) {
   const [open, setOpen] = useState(false);

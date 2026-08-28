@@ -2,6 +2,7 @@ import { useSession } from "../state/session";
 import { reviewComplete } from "../state/select";
 import { AwaitingAgent } from "./AwaitingAgent";
 import { ClauseBlock } from "./ClauseBlock";
+import { EmailView } from "./EmailView";
 
 interface DocumentViewProps {
   onComposeEmail?: () => void;
@@ -13,6 +14,7 @@ export function DocumentView({ onComposeEmail }: DocumentViewProps) {
   if (!doc) return null;
 
   const complete = reviewComplete(session);
+  const started = session.phase === "reviewing" || session.phase === "complete";
 
   return (
     <main className="document">
@@ -25,6 +27,11 @@ export function DocumentView({ onComposeEmail }: DocumentViewProps) {
         >
           Start over
         </button>
+        {started && !complete && (
+          <a className="document__emaillink" href="#email">
+            Draft email
+          </a>
+        )}
       </header>
       {complete && (
         <section className="completion" aria-live="polite">
@@ -42,9 +49,9 @@ export function DocumentView({ onComposeEmail }: DocumentViewProps) {
           <ClauseBlock key={clause.id} clause={clause} dispatch={dispatch} />
         ))}
       </div>
-      {complete && (
-        <section id="email" className="document__emailstub" aria-label="Negotiation email">
-          <p>The negotiation email takes shape here.</p>
+      {started && (
+        <section id="email" className="document__email" aria-label="Negotiation email">
+          <EmailView />
         </section>
       )}
       {session.phase === "awaiting-agent" && <AwaitingAgent />}
