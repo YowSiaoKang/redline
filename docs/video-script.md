@@ -74,6 +74,6 @@ Production notes: 30fps screen capture minimum (the blur transition needs it); r
 
 - **Tagline:** The agent reads the fine print; the app gives it eyes and hands inside the document — and the human keeps the pen.
 - **Built with:** React, TypeScript, WebMCP, Cloudflare Workers
-- **Links:** Live — https://redline.kangyow.workers.dev/ · Repo — https://github.com/YowSiaoKang/redline · Video — (after upload)
+- **Links:** Live — https://redline.kangyow.workers.dev/ · Repo — https://github.com/YowSiaoKang/redline · Video — https://youtu.be/uKMjpvsRs5o
 - **Story skeleton (expand in your voice):** the problem (22 pages, no lawyer, 48 hours; ~30% of US workers bound by non-competes) → the idea (agent as analyzer via WebMCP tools; human keeps decision rights) → how it's built (7 client-side tools via `document.modelContext.registerTool`, phase-gated dynamic registration, live-ref state, derived clarity rule, no backend/keys, enforceability data packs) → the demo arc → what's honest (no scripting: the samples are drafted overbroad, but the app accepts whatever a good model produces) → the docs in the repo are the full spec-driven journey (scope → PRD → spec → checklist).
 - **Screenshots:** the four from the rehearsal.
