@@ -1,0 +1,323 @@
+1
+00:00:00,400 --> 00:00:01,740
+You got the offer.
+
+2
+00:00:02,320 --> 00:00:03,400
+The salary is great,
+
+3
+00:00:03,660 --> 00:00:04,840
+the team seems great,
+
+4
+00:00:05,060 --> 00:00:05,940
+and the contract is
+
+5
+00:00:05,940 --> 00:00:07,280
+22 pages of fine
+
+6
+00:00:07,280 --> 00:00:08,500
+print, but you have
+
+7
+00:00:08,500 --> 00:00:09,760
+48 hours to sign.
+
+8
+00:00:10,340 --> 00:00:11,600
+A lawyer costs $400
+
+9
+00:00:11,600 --> 00:00:13,300
+an hour, guessing is
+
+10
+00:00:13,300 --> 00:00:14,440
+free until it isn't.
+
+11
+00:00:15,704 --> 00:00:16,884
+This is Redline.
+
+12
+00:00:17,344 --> 00:00:18,564
+Paste the contract or
+
+13
+00:00:18,564 --> 00:00:19,744
+open a sample —
+
+14
+00:00:19,744 --> 00:00:20,844
+the document loads exactly
+
+15
+00:00:20,844 --> 00:00:22,164
+the way it feels.
+
+16
+00:00:22,644 --> 00:00:23,144
+Blurred,
+
+17
+00:00:23,764 --> 00:00:24,664
+one wall of dread.
+
+18
+00:00:25,544 --> 00:00:26,444
+But this page has
+
+19
+00:00:26,444 --> 00:00:26,804
+a trick.
+
+20
+00:00:27,284 --> 00:00:28,944
+It speaks WebMCP.
+
+21
+00:00:30,432 --> 00:00:31,692
+Open your AI Assistant
+
+22
+00:00:31,692 --> 00:00:33,152
+and just say "Review
+
+23
+00:00:33,152 --> 00:00:33,992
+this contract."
+
+24
+00:00:34,592 --> 00:00:36,152
+No API keys, no
+
+25
+00:00:36,152 --> 00:00:36,692
+back-end.
+
+26
+00:00:37,272 --> 00:00:38,232
+The agent works directly
+
+27
+00:00:38,232 --> 00:00:39,552
+through tools that page
+
+28
+00:00:39,552 --> 00:00:40,672
+registers in your browser.
+
+29
+00:00:41,492 --> 00:00:42,772
+That's the whole WebMCP
+
+30
+00:00:42,772 --> 00:00:44,272
+idea taken seriously.
+
+31
+00:00:46,048 --> 00:00:47,668
+The agent reads every
+
+32
+00:00:47,668 --> 00:00:48,968
+clause in order.
+
+33
+00:00:49,708 --> 00:00:51,008
+Clean clauses snap into
+
+34
+00:00:51,008 --> 00:00:52,088
+clarity as it goes,
+
+35
+00:00:52,628 --> 00:00:53,448
+and the risky ones
+
+36
+00:00:53,448 --> 00:00:55,368
+stay blurred, flagged with
+
+37
+00:00:55,368 --> 00:00:57,108
+severity and reasons grounded
+
+38
+00:00:57,108 --> 00:00:58,928
+in real enforceability data.
+
+39
+00:00:59,908 --> 00:01:00,488
+Here's the villain.
+
+40
+00:01:01,188 --> 00:01:03,568
+A five-year worldwide non-compete
+
+41
+00:01:03,568 --> 00:01:05,988
+for a $128k job
+
+42
+00:01:05,988 --> 00:01:06,788
+in Seattle,
+
+43
+00:01:07,548 --> 00:01:07,808
+Washington.
+
+44
+00:01:07,808 --> 00:01:08,848
+law is not impressed,
+
+45
+00:01:09,208 --> 00:01:09,688
+and now the app
+
+46
+00:01:09,688 --> 00:01:10,688
+says so with the
+
+47
+00:01:10,688 --> 00:01:11,028
+citation.
+
+48
+00:01:12,776 --> 00:01:14,256
+Every redline gets a
+
+49
+00:01:14,256 --> 00:01:15,236
+verdict and the decision
+
+50
+00:01:15,236 --> 00:01:16,856
+is yours one by
+
+51
+00:01:16,856 --> 00:01:17,316
+one.
+
+52
+00:01:17,956 --> 00:01:19,236
+Adopt the duration fix.
+
+53
+00:01:20,036 --> 00:01:20,556
+Keep the geography.
+
+54
+00:01:21,596 --> 00:01:22,256
+Change your mind whenever
+
+55
+00:01:22,256 --> 00:01:22,936
+you want.
+
+56
+00:01:23,456 --> 00:01:24,056
+This is the part
+
+57
+00:01:24,056 --> 00:01:24,656
+that matters.
+
+58
+00:01:25,456 --> 00:01:26,696
+The agent proposes the
+
+59
+00:01:26,696 --> 00:01:27,336
+human decides.
+
+60
+00:01:28,216 --> 00:01:29,336
+You keep the pen.
+
+61
+00:01:52,427 --> 00:01:53,807
+As you decide, your
+
+62
+00:01:53,807 --> 00:01:55,467
+negotiation email writes itself —
+
+63
+00:01:55,467 --> 00:01:57,447
+current language against proposed,
+
+64
+00:01:57,447 --> 00:01:59,527
+side by side in
+
+65
+00:01:59,527 --> 00:02:00,607
+a tone you'd actually
+
+66
+00:02:00,607 --> 00:02:00,987
+send.
+
+67
+00:02:01,827 --> 00:02:02,647
+One click to copy
+
+68
+00:02:02,647 --> 00:02:04,347
+the agent's work product
+
+69
+00:02:04,347 --> 00:02:06,247
+just became your negotiation.
+
+70
+00:02:08,071 --> 00:02:09,571
+Normal people get what
+
+71
+00:02:09,571 --> 00:02:10,371
+lawyers have.
+
+72
+00:02:11,031 --> 00:02:11,751
+Redline is live.
+
+73
+00:02:12,511 --> 00:02:13,611
+Paste your own contract
+
+74
+00:02:13,611 --> 00:02:14,991
+or try one of
+
+75
+00:02:14,991 --> 00:02:15,711
+the three villains.
+
+76
+00:02:16,431 --> 00:02:17,851
+Built on WebMCP,
+
+77
+00:02:18,631 --> 00:02:19,651
+the agent reads the
+
+78
+00:02:19,651 --> 00:02:20,931
+fine print and the
+
+79
+00:02:20,931 --> 00:02:21,831
+app gives it eyes
+
+80
+00:02:21,831 --> 00:02:23,151
+and hands inside the
+
+81
+00:02:23,151 --> 00:02:23,631
+document.
