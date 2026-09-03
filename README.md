@@ -6,6 +6,13 @@ Redline is a WebMCP contract-review studio. Paste an employment contract and you
 
 **Live:** https://redline.kangyow.workers.dev/
 
+## Demo
+
+<video src="video-src/redline-final-1080p.mp4" controls width="100%" poster="image/redline-SS1.png">
+  Your browser does not support the video tag.
+  Watch it here: <a href="video-src/redline-final-1080p.mp4">redline-final-1080p.mp4</a>
+</video>
+
 ## Use it
 
 1. **Load a contract** — pick a sample (overbroad offer letter, training repayment agreement, one-way NDA) or paste your own.
@@ -27,6 +34,8 @@ Seven tools, all registered client-side via `document.modelContext.registerTool`
 | `export_negotiation_email` | The negotiation email, composed from the user's current decisions — byte-identical to the page |
 
 ## Architecture
+
+![Redline architecture](image/redline-architecture.png)
 
 - No backend, no database, no API keys — the agent platform supplies 100% of the intelligence; Redline supplies structure, state, and UI.
 - All tools read the store through a live ref, so there are no stale closures; data flows tools → actions → store → UI, single direction.
