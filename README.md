@@ -8,10 +8,9 @@ Redline is a WebMCP contract-review studio. Paste an employment contract and you
 
 ## Demo
 
-<video src="video-src/redline-final-1080p.mp4" controls width="100%" poster="image/redline-SS1.png">
-  Your browser does not support the video tag.
-  Watch it here: <a href="video-src/redline-final-1080p.mp4">redline-final-1080p.mp4</a>
-</video>
+[![Watch the demo on YouTube](image/redline-SS1.png)](https://youtu.be/uKMjpvsRs5o)
+
+**Watch it:** https://youtu.be/uKMjpvsRs5o
 
 ## Use it
 
